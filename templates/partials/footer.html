@@ -1,0 +1,96 @@
+{% load i18n %}
+{% load flatpages %}
+{% get_flatpages as flatpages %}
+
+<footer class="footer">
+    {% block footer %}
+        {% comment %}
+            Could be used for displaying links to privacy policy, terms of service, etc.
+            We have a CSS class defined:
+                <ul class="footer_links inline">
+                    ...
+                </ul>
+         {% endcomment %}
+         <div id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <h4>Pages</h4>
+
+                        <ul>
+                        <li><a href="{% url 'blog:index' %}">Blog</a></li>
+                        {% for page in flatpages %}
+                            <li><a href="{{ page.url }}">{{ page.title }}</a>
+                            </li>
+                        {% endfor %}
+                        <!--Other pages can be added in content section of dashboard, it will automatically be added here-->
+                        </ul>
+
+                        <hr>
+
+                        <hr class="hidden-md hidden-lg hidden-sm">
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                    <div class="col-md-3 col-sm-6">
+
+                        
+
+                        <hr class="hidden-md hidden-lg">
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                    <div class="col-md-3 col-sm-6">
+
+                        <h4>Where to find us</h4>
+
+                        <p><strong>Firepit Ltd.</strong>
+                            <br>13/25 New Avenue
+                            <br>New Heaven
+                            <br>45Y 73J
+                            <br>England
+                            <br>
+                            <strong>Great Britain</strong>
+                        </p>
+
+                        <hr class="hidden-md hidden-lg">
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+
+
+                    <div class="col-md-3 col-sm-6">
+
+                        <h4>Be the first one to learn about our latest products and offers!!</h4>
+
+                         <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#newsModal">Subscribe!</button>
+                         {% include "newsletter/subscription_subscribe.html" %}
+                         </div>
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#footer -->
+
+        <!-- *** FOOTER END *** -->
+        <!-- *** COPYRIGHT ***
+ _________________________________________________________ -->
+        <div id="copyright">
+            <div class="container">
+                <div class="col-md-12">
+                    <p class="pull-left">Exotic Furniture at Affordable prices © 2017</p>
+
+                </div>
+            </div>
+        </div>
+        <!-- *** COPYRIGHT END *** -->
+    {% endblock %}
+</footer>

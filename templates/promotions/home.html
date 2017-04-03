@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% load category_tags %}
+{% load slideshow_tags %}
+{% load product_tags %}
+{% load product_view_tags %}
+{% load store_view_tags %}
+
+{% block navigation %}
+    {% include "partials/nav_primary.html" with expand_dropdown=1 %}
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block column_left %}
+{% endblock %}
+
+{% block content %}
+<script>
+$(document).ready(function() {
+
+  $("#main-slider").owlCarousel({
+	navigation: true, // Show next and prev buttons
+	slideSpeed: 300,
+	paginationSpeed: 400,
+	autoPlay: true,
+	stopOnHover: true,
+	singleItem: true,
+	afterInit: ''
+    });
+ });
+</script>
+<div class="container slider">
+    <div class="col-md-12">
+    	{% image_list as images %}
+        <div id="main-slider">
+            {% for image in images %}
+                <div class="item">
+                    <a href="{{ image.url }}"><img src="{{image.image.url}}" alt="something" class="img-responsive"></a>
+                </div>
+            {% endfor %}
+        </div>
+                    <!-- /#main-slider -->
+    </div>
+ </div>
+ <div class="container">
+<h1>Categories</h1>
+ {% category_tree depth=2 as tree_categories %}
+ {% if tree_categories %}
+ <div class="row">
+ {% for tree_category, info in tree_categories %}
+   <div class="col-sm-3">
+   	<a href="{{ tree_category.get_absolute_url }}"><img class="cat-img" src="{{ tree_category.image.url }}"></a>
+   	<h2><a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a></h2>
+   </div>          
+  {% endfor %}                        
+	{% endif %}
+  </div>
+  </div>
+  <div>
+    {% with products_sliced=products|slice:":4" %}
+    {% if products_sliced %}
+        <div class="sub-header">
+            <h2>{% trans 'Products you recently viewed' %}</h2>
+        </div>
+
+        <ul class="row">
+            {% for product in products_sliced %}
+                <li class="col-xs-6 col-sm-4 col-md-3 col-lg-3">{% render_product product %}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+  </div>
+  <div class="container">
+  <h1>Popular Products</h1>
+ {% product_record as product_list %}
+ <div class="row">
+ {% for product in product_list %}
+   <div class="col-sm-3">
+   {% with product.product.images.all|first as image %}
+    <a href="{{ product.product.get_absolute_url }}"><img class="cat-img" src="http://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ image.original.name }}"></a>
+    <h2><a href="{{ product.product.get_absolute_url }}">{{ product.product.title }}</a></h2>
+    {% endwith %}
+   </div>          
+  {% endfor %}
+  </div>
+  </div>
+  <div class="container">
+    <h1>Stores</h1>
+    <div class="row">
+    {% store_list as stores %}
+    {% for store in stores %}
+    <div class="col-sm-3">
+      <div class="">
+        <a href="{% url 'store' store.slug %}""><img class="cat-img" src="http://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ store.image.name }}" alt="{{ store.name }}"></a>
+      </div>
+      <h2><a href="{% url 'store' store.slug %}"">{{ store.name }}</a></h2>
+    </div>
+    {% endfor %}
+    </div>
+  </div>
+
+{% endblock content %}

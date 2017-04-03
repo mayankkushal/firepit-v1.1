@@ -1,0 +1,19 @@
+{% extends "checkout/checkout.html" %}
+{% load i18n %}
+{% load cart_checkout_tags %}
+
+{% block title %}
+    {% trans "Order preview" %} | {{ block.super }}
+{% endblock %}
+
+{% block checkout_nav %}
+    {% include 'checkout/nav.html' with step=4 %}
+{% endblock %}
+
+{% block checkout_title %}
+    {% trans "Preview order" %}
+{% endblock %}
+
+{% block place_order %}
+    <a href="{% checkout_url %}" class="btn btn-lg btn-primary">Click to Pay</a>
+{% endblock place_order %}
