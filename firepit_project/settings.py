@@ -285,7 +285,7 @@ DATABASES = { 'default': dj_database_url.config() }
 
 ALLOWED_HOSTS = ['*']
 
-DEBUG = False
+DEBUG = True
 
 try:
     from .local_settings import *
