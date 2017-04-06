@@ -51,10 +51,10 @@
             <div class="navbar-collapse collapse fixed-top" id="navigation">
                 
                 <ul class="nav navbar-nav navbar-left fixed-top">
-                    <li><a href="{% url 'request_quote' %}">Request a Quote</a>
+                    <li {% if request.path == "/request_quote" %} class="active"{% endif %}><a href="{% url 'request_quote' %}">Request a Quote</a>
                     </li>
-                    <li><a href="{% url 'decorate_space' %}">Decorate your Space</a></li>
-                    <li><a href="{% url 'power_solution' %}">Inverter Solutions</a></li>
+                    <li {% if request.path == "/decorate_space" %} class="active"{% endif %}><a href="{% url 'decorate_space' %}">Decorate your Space</a></li>
+                    <li {% if request.path == "/power_solution" %} class="active"{% endif %}><a href="{% url 'power_solution' %}">Inverter Solutions</a></li>
                     {% if user.is_authenticated %}
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi {{request.user.first_name}}{% if num_unread_notifications > 0 %}<span class="badge ">{{ num_unread_notifications }}</span>{% endif %}
                     <i class="fa fa-caret-down"></i></a>

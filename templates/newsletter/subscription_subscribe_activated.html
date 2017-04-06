@@ -5,10 +5,13 @@
 
 {% block title %}{% trans "Newsletter" %} {{ newsletter.title }} {{ action }} {% trans "activate" %}{% endblock title %}
 
-{% block content_wrapper %}
-<div class="container">
+{% block content %}
+<div class="container newsletter-success">
     <h1>{% trans "Newsletter: " %} {{ newsletter.title }}</h1>
 
-    <p>{% trans "Your subscription has successfully been activated." %}</p>
+    <h3>{% trans "Your subscription has successfully been activated." %}</h3>
+    <hr>
+	<hr>
+	<a href="{% url 'index' %}" class="btn btn-lg btn-success">Look at our wide range of products</a>
 </div>
 {% endblock %}

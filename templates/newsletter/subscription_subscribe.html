@@ -34,9 +34,8 @@
     {% else %}
         <form enctype="multipart/form-data" method="post" action="/newsletter/new-newsletter/subscribe/">
             {% csrf_token %}
-            <ul class="errorlist"><li>An e-mail address is required.</li></ul>
             <label for="id_email_field">E-mail:</label>
-            <input id="id_email_field" maxlength="254" name="email_field" type="email">
+            <input id="id_email_field" maxlength="254" name="email_field" type="email" autofocus>
 
             <input id="id_submit" name="submit" value="{% trans "Subscribe" %}" type="submit" class="btn btn-primary" />
         </form>

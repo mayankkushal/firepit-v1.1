@@ -13,8 +13,8 @@ CheckoutSessionData = get_class('checkout.utils', 'CheckoutSessionData')
 OrderPlacementMixin = get_class('checkout.mixins', 'OrderPlacementMixin')
 OrderCreator = get_class('order.utils', 'OrderCreator')
 
-api = Instamojo(api_key='e592148daf8eae546e01e6b2f18ad1fb',
-                auth_token='9e09a975978993c860602dcef3ec76f3')
+api = Instamojo(api_key='2415f88d2895c6aacbdf8b7d0fbd9742',
+                auth_token='aa682d9112dee8cbc753a98d73bd6938')
 
 register = template.Library() 
 
@@ -44,7 +44,7 @@ def checkout_url(context):
 			purpose=order_number,
 			send_email=False,
 			email=request.user.email,
-			redirect_url="https://firepit.in/thank_you",# thank_you view will be called
+			redirect_url="https://www.firepit.in/thank_you",# thank_you view will be called
 			phone= phone
 		)
 	url = response['payment_request']['longurl']
