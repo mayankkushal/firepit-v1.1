@@ -116,12 +116,12 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}
+}'''
 
 #Haystack search
 '''HAYSTACK_CONNECTIONS = {
@@ -279,13 +279,16 @@ AdminSite.index_title = 'FIREPIT Administration'
 
 #for deploying 
 import dj_database_url
-DATABASES['default'] = dj_database_url.config()
-
+DEBUG = config('DEBUG', default=False, cast=bool)
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+}
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ['*']
 
-DEBUG = False
 
 try:
     from .local_settings import *
