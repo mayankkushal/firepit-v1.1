@@ -13,7 +13,7 @@ class Store(models.Model):
 	description = models.TextField(_('Description'), blank=True)
 	image = models.ImageField(_('Image'), upload_to='stores', blank=True, null=True, max_length=255)
 	slug = models.SlugField(_('Slug'), max_length=255, db_index=True)
-	views = models.PositiveIntegerField(_('Views'))
+	views = models.PositiveIntegerField(_('Views'), null=True)
 
 	def get_absolute_url(self):
 		return '/catalogue/store/%s'% self.slug
