@@ -124,3 +124,6 @@ def power_solution(request):
 	else:
 		sol_form = PowerSolutionForm()
 		return render(request, 'firepit/power_solution.html', {'sol_form':sol_form}) 
+
+def site_map(request):
+	return render(request, 'firepit/site_map.html')
