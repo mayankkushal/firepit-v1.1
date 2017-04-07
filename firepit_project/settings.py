@@ -281,9 +281,6 @@ AdminSite.index_title = 'FIREPIT Administration'
 import dj_database_url
 DATABASES = { 'default': dj_database_url.config() }
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-=======
 #STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 #SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
