@@ -86,7 +86,7 @@ $(document).ready(function() {
  {% for product in product_list %}
    <div class="col-sm-3">
    {% with product.product.images.all|first as image %}
-    <a href="{{ product.product.get_absolute_url }}"><img class="cat-img" src="http://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ image.original.name }}"></a>
+    <a href="{{ product.product.get_absolute_url }}"><img class="cat-img" src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ image.original.name }}"></a>
     <h2><a href="{{ product.product.get_absolute_url }}">{{ product.product.title }}</a></h2>
     {% endwith %}
    </div>          
@@ -100,7 +100,7 @@ $(document).ready(function() {
     {% for store in stores %}
     <div class="col-sm-3">
       <div class="view view-sixth">
-        <a href="{% url 'store' store.slug %}""><img src="http://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ store.image.name }}" alt="{{ store.name }}"></a>
+        <a href="{% url 'store' store.slug %}""><img src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ store.image.name }}" alt="{{ store.name }}"></a>
       <div class="mask">
       <h2><a href="{% url 'store' store.slug %}" class="mask-h">{{ store.name }}</a></h2>
       <p>{{ store.description }}</p>

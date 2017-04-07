@@ -162,8 +162,8 @@
 }
 
 .slider{
-  padding-top: 20px !important;
-  margin-top: 20px !important;
+  padding-top: 50px !important;
+  margin-top: 50px !important;
 }
 
 .basket-mini{
@@ -1351,7 +1351,7 @@ h1 {
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand,
   .navbar > .container-fluid .navbar-brand {
-    margin-left: -15px;
+    margin-left: -10px;
   }
 }
 .navbar-toggle {
