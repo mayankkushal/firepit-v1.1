@@ -14,7 +14,7 @@
                 {% for image in all_images %}
                     <div class="item {% if forloop.first %}active{% endif %}">
                         {% thumbnail image.original "440x400" upscale=False as thumb %}
-                        <img src="{{ thumb.url }}" alt="{{ product.get_title }}" />
+                        <img class="product-main" src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ image.original.name }}" alt="{{ product.get_title }}" />
                         {% endthumbnail %}
                     </div>
                 {% endfor %}
@@ -34,9 +34,7 @@
             <ol class="carousel-indicators thumbnail">
                 {% for image in all_images %}
                     <li data-target="#product_gallery" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}">
-                        {% thumbnail image.original "65x55" crop="center" as thumb %}
-                        <img src="{{ thumb.url }}" alt="{{ product.get_title }}" />
-                        {% endthumbnail %}
+                        <img class="product-thumbnail" src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ image.original.name }}" alt="{{ product.get_title }}" />
                     </li>
                 {% endfor %}
             </ol>
@@ -51,7 +49,7 @@
                     <div class="item active">
                     {% with image=product.primary_image %}
                         {% thumbnail image.original "440x400" upscale=False as thumb %}
-                            <img src="{{ thumb.url }}" alt="{{ product.get_title }}" />
+                            <img src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ image.original.name }}" alt="{{ product.get_title }}" />
                         {% endthumbnail %}
                     {% endwith %}
                     </div>

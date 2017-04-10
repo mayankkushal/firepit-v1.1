@@ -36,7 +36,7 @@ $(document).ready(function() {
         <div id="main-slider" class="owl-carousel owl-theme">
             {% for image in images %}
                 <div class="item">
-                    <a href="{{ image.url }}"><img src="{{image.image.url}}" alt="something" class="img-responsive"></a>
+                    <a href="{{ image.url }}"><img src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{image.image.name}}" alt="something" class="img-responsive"></a>
                 </div>
             {% endfor %}
         </div>
@@ -51,7 +51,7 @@ $(document).ready(function() {
  {% for tree_category, info in tree_categories %}
    <div class="col-sm-3">
    <div class="view view-sixth">
-   	<a href="{{ tree_category.get_absolute_url }}"><img class="cat-img" src="{{ tree_category.image.url }}"></a>
+   	<a href="{{ tree_category.get_absolute_url }}"><img class="cat-img" src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ tree_category.image.name}}"></a>
     <div class="mask">
    	<h2><a href="{{ tree_category.get_absolute_url }}" class="mask-h">{{ tree_category.name }}</a></h2>
     <p>{{ tree_category.description }}</p>

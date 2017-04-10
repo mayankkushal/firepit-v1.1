@@ -1,3 +1,11 @@
+.product-thumbnail{
+  height: 65px;
+  width: 65px;
+}
+.product-main{
+  height: 440px;
+  width: 400px;
+}
 .newsletter-success{
   height: 60vh;
 }

@@ -21,7 +21,7 @@ class Store(models.Model):
 	def save(self, *args, **kwargs):
 		if not self.id:
 			self.slug = slugify(self.name)
-		cloudinary.uploader.upload( self.image, folder='stores', public_id=os.path.splitext(self.image.name)[0])
+			cloudinary.uploader.upload( self.image, folder='stores', public_id=os.path.splitext(self.image.name)[0])
 		super(Store, self).save(*args, **kwargs)
 
 	def __str__(self):
@@ -32,12 +32,14 @@ class Product(AbstractProduct):
 
 class ProductImage(AbstractProductImage):
 	def save(self, *args, **kwargs):
-		cloudinary.uploader.upload( self.original, folder=settings.OSCAR_IMAGE_FOLDER, public_id=os.path.splitext(self.original.name)[0])
+		if not self.pk:
+			cloudinary.uploader.upload( self.original, folder=settings.OSCAR_IMAGE_FOLDER, public_id=os.path.splitext(self.original.name)[0])
 		super(ProductImage, self).save(*args, **kwargs)
 
 class Category(AbstractCategory):
 	def save(self, *args, **kwargs):
-		cloudinary.uploader.upload( self.image, folder='categories', public_id=os.path.splitext(self.image.name)[0])
+		if not self.pk:
+			cloudinary.uploader.upload( self.image, folder='categories', public_id=os.path.splitext(self.image.name)[0])
 		super(Category, self).save(*args, **kwargs)
 
 

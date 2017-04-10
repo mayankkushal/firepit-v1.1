@@ -24,6 +24,11 @@ class SlideShowImage(models.Model):
 	def __str__(self):
 		return self.image.name
 
+	def save(self, *args, **kwargs):
+		if not self.pk:
+			cloudinary.uploader.upload( self.image, folder=slideshow, public_id=os.path.splitext(self.image.name)[0])
+		super(RequestQuoteImage, self).save(*args, **kwargs)
+
 class ReviewControl(models.Model):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL)
 	allowed = models.BooleanField(default=True)
@@ -66,7 +71,8 @@ class RequestQuoteImage(models.Model):
 		today = date.today()
 		today_path = today.strftime("%Y/%m/%d")
 		upload_add = "request_quote/"+self.quote.name+"/"+today_path
-		cloudinary.uploader.upload( self.image, folder=upload_add, public_id=os.path.splitext(self.image.name)[0])
+		if not self.pk:
+			cloudinary.uploader.upload( self.image, folder=upload_add, public_id=os.path.splitext(self.image.name)[0])
 		super(RequestQuoteImage, self).save(*args, **kwargs)
 
 
@@ -98,7 +104,8 @@ class DecorateSpaceImage(models.Model):
 		today = date.today()
 		today_path = today.strftime("%Y/%m/%d")
 		upload_add = "decorate_space/"+self.space.name+"/"+today_path
-		cloudinary.uploader.upload( self.image, folder=upload_add, public_id=os.path.splitext(self.image.name)[0])
+		if not self.pk:
+			cloudinary.uploader.upload( self.image, folder=upload_add, public_id=os.path.splitext(self.image.name)[0])
 		super(DecorateSpaceImage, self).save(*args, **kwargs)
 
 class PowerSolutions(models.Model):
