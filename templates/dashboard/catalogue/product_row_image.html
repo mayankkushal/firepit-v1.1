@@ -1,8 +1,8 @@
 {% load thumbnail %}
 {% if record.primary_image.original.url %}
     {% with image=record.primary_image %}
-        <a href="{{ image.original.url }}" rel="lightbox_{{ record.upc|default:"-" }}" class="sub-image">
-            <img class="prod-dash-thumb" src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ image.original.name }}" alt="{{ record.get_title }}" data-description="{% if image.caption %}{{ image.caption }}{% endif %}">
+        <a href="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ image.original.name }}" rel="lightbox_{{ record.upc|default:"-" }}" class="sub-image">
+            <img style="width: 70px !important; height: 70px !important;" src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ image.original.name }}" alt="{{ record.get_title }}" data-description="{% if image.caption %}{{ image.caption }}{% endif %}">
         </a>
     {% endwith %}
 {% else %}
