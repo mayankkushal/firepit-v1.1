@@ -6,6 +6,10 @@
   height: 440px;
   width: 400px;
 }
+.prod-dash-thumb{
+  height: 70px !important;
+  width: 70px !important;
+}
 .newsletter-success{
   height: 60vh;
 }

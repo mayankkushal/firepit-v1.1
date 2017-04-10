@@ -31,6 +31,12 @@ class Images(models.Model):
 	class Meta:
 		verbose_name_plural = "Images"
 
+	def save(self, *args, **kwargs):
+		if not self.pk:
+			cloudinary.uploader.upload( self.image, folder="blog_images", public_id=os.path.splitext(self.image.name)[0])
+		super(Images, self).save(*args, **kwargs)
+
+
 class Comment(models.Model):
 	poster = models.ForeignKey(User)
 	article = models.ForeignKey(Article)

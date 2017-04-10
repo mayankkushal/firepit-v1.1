@@ -4,12 +4,13 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width" />
-      <title>Super Blog
+      <title>FirepitBlog - Home Solutions
       </title>
       <meta name="description" content="Blog for Firepit.in"/>
       <meta name="keywords" content="free, responsive, blog, web site"/>
       <link rel="stylesheet" href="{% static 'blog/css/components.css' %}">
       <link rel="stylesheet" href="{% static 'blog/css/responsee.css' %}">
+      <link rel="shortcut icon" href="{% static "oscar/favicon.ico" %}" />
       <!-- CUSTOM STYLE -->    
       <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">   
       <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -30,7 +31,7 @@
                <div class="top-nav">
                   <p class="nav-text"></p>
                   <a class="logo" href="{% url 'blog:index' %}">            
-                  Super<span>Blog</span>
+                  Firepit<span>Blog</span>
                   </a>            
                   <ul class="top-ul right">
                   {% if user.is_authenticated  %}
@@ -71,7 +72,7 @@
                   <div class="s-12 l-6 post-image">                   
                      <a href="post-1.html">
                      {% with article.images.all|first as image %}
-                     <a href="{% url 'blog:article' article.slug %}"><img src="{{ image.picture.url }}" alt="Fashion 1"></a>
+                     <a href="{% url 'blog:article' article.slug %}"><img src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ image.image.name }}" alt="Fashion 1"></a>
                      {% endwith %}
                      </a>                
                   </div>
@@ -96,7 +97,7 @@
                   <div class="s-12 l-6 post-image">                   
                      <a href="post-1.html">
                      {% with article.images.all|first as image %}
-                     <a href="{% url 'blog:article' article.slug %}"><img src="{{ image.picture.url }}" alt="Fashion 1"></a>
+                     <a href="{% url 'blog:article' article.slug %}"><img src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ image.image.name }}" alt="Fashion 1"></a>
                      {% endwith %}
                      </a>                
                   </div>
@@ -117,22 +118,6 @@
                {% endfor %}
                
             </div>
-            <!-- SIDEBAR -->             
-            <div class="s-12 l-3">
-               <aside>
-                  <!-- NEWS 1 -->                    
-                  <div class="aside-block margin-bottom">
-                     <h3>This is the first news on blog</h3>
-                     <p>Lorem ipsum dolor sit amet, conse ctetuer. Duis autem vemeu iriure dolor adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam</p>
-                  </div>
-                  <!-- NEWS 2 -->              
-                  <div class="aside-block margin-bottom">
-                     <h3>Second news on the fashion blog</h3>
-                     <p>Lorem ipsum dolor sit amet, conse ctetuer. Duis autem vemeu iriure dolor adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam</p>
-                  </div>
-               </aside>
-            </div>
-         </div>
       </section>
       <!-- FOOTER -->       
       <div class="line">

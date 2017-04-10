@@ -4,12 +4,13 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width" />
-      <title>Super Blog
+      <title>FirepitBlog - Home Solutions
       </title>
       <meta name="description" content="Blog for Firepit.in"/>
       <meta name="keywords" content="free, responsive, blog, web site"/>
       <link rel="stylesheet" href="{% static 'blog/css/components.css' %}">
       <link rel="stylesheet" href="{% static 'blog/css/responsee.css' %}">
+      <link rel="shortcut icon" href="{% static "oscar/favicon.ico" %}" />
       <!-- CUSTOM STYLE -->    
       <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">   
       <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -17,7 +18,7 @@
       <script type="text/javascript" src="{% static 'blog/js/jquery-1.8.3.min.js' %}"></script>
       <script type="text/javascript" src="{% static 'blog/js/jquery-ui.min.js' %}"></script>    
       <script type="text/javascript" src="{% static 'blog/js/modernizr.js' %}"></script>
-      <script type="text/javascript" src="{% static 'blog/js/responsee.js' %}"></script>          
+      <script type="text/javascript" src="{% static 'blog/js/responsee.js' %}"></script>   
       <!--[if lt IE 9]> 
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
       <![endif]-->     
@@ -30,7 +31,7 @@
                <div class="top-nav">
                   <p class="nav-text"></p>
                   <a class="logo" href="{% url 'blog:index' %}">            
-                  Super<span>Blog</span>
+                  Firepit<span>Blog</span>
                   </a>            
                   <ul class="top-ul right">
                   {% if user.is_authenticated  %}
