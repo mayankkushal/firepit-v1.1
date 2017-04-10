@@ -26,7 +26,7 @@ class SlideShowImage(models.Model):
 
 	def save(self, *args, **kwargs):
 		if not self.pk:
-			cloudinary.uploader.upload( self.image, folder=slideshow, public_id=os.path.splitext(self.image.name)[0])
+			cloudinary.uploader.upload( self.image, folder="slideshow", public_id=os.path.splitext(self.image.name)[0])
 		super(RequestQuoteImage, self).save(*args, **kwargs)
 
 class ReviewControl(models.Model):
