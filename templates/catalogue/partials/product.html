@@ -9,7 +9,7 @@
         {% block product_image %}
             <div class="image_container">
                 {% with image=product.primary_image %}
-                    <a href="{{ product.get_absolute_url }}"><img src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ image.original.name }}" alt="{{ product.get_title }}" class="thumbnail"></a>
+                    <a href="{{ product.get_absolute_url }}"><img src="https://res.cloudinary.com/firepit/image/upload/v1491913830/{{ image.original.name }}" alt="{{ product.get_title }}" class="thumbnail"></a>
                 {% endwith %}
             </div>
         {% endblock %}

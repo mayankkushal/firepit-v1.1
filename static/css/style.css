@@ -1,3 +1,11 @@
+@media (max-width: 760px){
+  .left{
+    visibility: hidden;
+  }
+  .right{
+    visibility: hidden;
+  }
+}
 .product-thumbnail{
   height: 65px;
   width: 65px;
@@ -5,10 +13,6 @@
 .product-main{
   height: 440px;
   width: 400px;
-}
-.prod-dash-thumb{
-  height: 70px !important;
-  width: 70px !important;
 }
 .newsletter-success{
   height: 60vh;
@@ -20,7 +24,6 @@
 .view {
     width: 300px;
     height: 200px;
-    margin: 10px;
     float: left;
     border: 10px solid #fff;
     overflow: hidden;
@@ -28,7 +31,11 @@
     text-align: center;
     box-shadow: 1px 1px 2px #e6e6e6;
     cursor: default;
-    background: #fff url(../images/bgimg.jpg) no-repeat center center
+}
+@media(max-width: 760px){
+  .view{
+        margin-left: -20px;
+  }
 }
 .view .mask, .view .content {
     width: 300px;
@@ -175,9 +182,8 @@
 
 .slider{
   padding-top: 50px !important;
-  margin-top: 50px !important;
+  margin-top: 50px;
 }
-
 .basket-mini{
   padding-top: 18px !important;
 }
@@ -1351,7 +1357,7 @@ h1 {
   font-size: 18px;
   line-height: 20px;
   height: 70px;
-  width: 215px;
+  width: 205px;
   background-color: #00BBD3;
 }
 .navbar-brand:hover,
@@ -1363,7 +1369,15 @@ h1 {
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand,
   .navbar > .container-fluid .navbar-brand {
-    margin-left: -10px;
+    margin-left: -100px;
+    margin-top: 5px;
+  }
+}
+@media (max-width: 760px) {
+  .navbar > .container .navbar-brand,
+  .navbar > .container-fluid .navbar-brand {
+    margin-left: -35px;
+    margin-top: 10px;
   }
 }
 .navbar-toggle {
@@ -1889,4 +1903,9 @@ address {
   height: 200px;
   border-radius: 5px;
   margin: auto;
+}
+@media (max-width: 760px){
+  .cat-image{
+    height: 100px;
+  }
 }

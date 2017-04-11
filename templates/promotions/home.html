@@ -36,7 +36,7 @@ $(document).ready(function() {
         <div id="main-slider" class="owl-carousel owl-theme">
             {% for image in images %}
                 <div class="item">
-                    <a href="{{ image.url }}"><img src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{image.image.name}}" alt="something" class="img-responsive"></a>
+                    <a href="{{ image.url }}"><img src="https://res.cloudinary.com/firepit/image/upload/v1491913830/{{image.image.name}}" alt="{{ image.url }}" class="img-responsive"></a>
                 </div>
             {% endfor %}
         </div>
@@ -51,7 +51,7 @@ $(document).ready(function() {
  {% for tree_category, info in tree_categories %}
    <div class="col-sm-3">
    <div class="view view-sixth">
-   	<a href="{{ tree_category.get_absolute_url }}"><img class="cat-img" src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ tree_category.image.name}}"></a>
+   	<a href="{{ tree_category.get_absolute_url }}"><img class="cat-img" src="https://res.cloudinary.com/firepit/image/upload/v1491913830/{{ tree_category.image.name}}"></a>
     <div class="mask">
    	<h2><a href="{{ tree_category.get_absolute_url }}" class="mask-h">{{ tree_category.name }}</a></h2>
     <p>{{ tree_category.description }}</p>
@@ -64,35 +64,21 @@ $(document).ready(function() {
 	{% endif %}
   </div>
   </div>
-  <div>
-    {% with products_sliced=products|slice:":4" %}
-    {% if products_sliced %}
-        <div class="sub-header">
-            <h2>{% trans 'Products you recently viewed' %}</h2>
-        </div>
-
-        <ul class="row">
-            {% for product in products_sliced %}
-                <li class="col-xs-6 col-sm-4 col-md-3 col-lg-3">{% render_product product %}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-{% endwith %}
-  </div>
   <div class="container">
   <h1>Popular Products</h1>
+
  {% product_record as product_list %}
  <div class="row">
  {% for product in product_list %}
-   <div class="col-sm-3">
+   <div class="col-sm-3 col-xs-6">
    {% with product.product.images.all|first as image %}
-    <a href="{{ product.product.get_absolute_url }}"><img class="cat-img" src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ image.original.name }}"></a>
+    <a href="{{ product.product.get_absolute_url }}"><img class="cat-img" src="https://res.cloudinary.com/firepit/image/upload/v1491913830/{{ image.original.name }}"></a>
     <h2><a href="{{ product.product.get_absolute_url }}">{{ product.product.title }}</a></h2>
     {% endwith %}
    </div>          
   {% endfor %}
   </div>
-  </div>
+    </div>
   <div class="container">
     <h1>Stores</h1>
     <div class="row">
@@ -100,7 +86,7 @@ $(document).ready(function() {
     {% for store in stores %}
     <div class="col-sm-3">
       <div class="view view-sixth">
-        <a href="{% url 'store' store.slug %}""><img src="https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ store.image.name }}" alt="{{ store.name }}"></a>
+        <a href="{% url 'store' store.slug %}""><img src="https://res.cloudinary.com/firepit/image/upload/v1491913830/{{ store.image.name }}" alt="{{ store.name }}"></a>
       <div class="mask">
       <h2><a href="{% url 'store' store.slug %}" class="mask-h">{{ store.name }}</a></h2>
       <p>{{ store.description }}</p>

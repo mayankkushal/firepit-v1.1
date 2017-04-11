@@ -101,9 +101,9 @@
 
     {% block product_info %}
     <div class="sub-header" id="pro-info-header">
-        <h2>{% trans "Product Information" %} <button class="btn btn-xs"><i id="toggle-arrow", class="fa fa-caret-down"></i></button></h2>
+        <h2>{% trans "Product Information" %} <button class="btn btn-xs"><i id="toggle-arrow", class="fa fa-caret-up"></i></button></h2>
     </div>
-    <div id="product-info" style="display: none;">
+    <div id="product-info">
     <table class="table table-striped">
         {% if product.upc %}
         <tr>

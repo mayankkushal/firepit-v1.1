@@ -194,9 +194,9 @@ MEDIA_ROOT = MEDIA_DIR
 # Cloudinary config
 # Cloudinary config
 cloudinary.config( 
-  cloud_name = "dvqjn4lzj", 
-  api_key = "124346914869879", 
-  api_secret = "5NZeAMeGO1QDowm8o8NperSewhE" 
+  cloud_name = "firepit", 
+  api_key = "553181451352257", 
+  api_secret = "wCyEcWqSpwS0vrJh5E1KUICVXhs" 
 )
 
 from django.utils.translation import ugettext_lazy as _
@@ -281,14 +281,12 @@ AdminSite.index_title = 'FIREPIT Administration'
 import dj_database_url
 DATABASES = { 'default': dj_database_url.config() }
 
-
 #SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 #STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-
 ALLOWED_HOSTS = ['*']
 
-DEBUG = True
+DEBUG = False
 
 try:
     from .local_settings import *
