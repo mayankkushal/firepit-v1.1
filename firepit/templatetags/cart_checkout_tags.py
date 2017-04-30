@@ -36,7 +36,6 @@ def checkout_url(context):
 	user = request.user
 	order_number = OrderNumberGenerator().order_number(basket)
 	request.session['order_number'] = order_number
-	print(order_number)
 	phone = shipping_address.phone_number.as_national
 	response = api.payment_request_create(
 			amount=order_total.incl_tax,

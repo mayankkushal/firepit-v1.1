@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Banner, SlideShowImage, ReviewControl, RequestQuote, RequestQuoteImage, DecorateSpace, DecorateSpaceImage, PowerSolutions
+from .models import HomeSolution
 # Register your models here.
 
 admin.site.register(Banner)
@@ -10,3 +11,4 @@ admin.site.register(RequestQuoteImage)
 admin.site.register(DecorateSpace)
 admin.site.register(DecorateSpaceImage)
 admin.site.register(PowerSolutions)
+admin.site.register(HomeSolution)

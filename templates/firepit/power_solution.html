@@ -1,27 +1,26 @@
 {% extends 'layout.html' %}
+{% load widget_tweaks %}
 
-
-{% block content %}
+{% block content_wrapper %}
+<div class="solution-background" style="background-image: url(https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{power.background_image.name}});">
 	<div class="container quote-form">
-	<h1>Power Solutions for home or office</h1>
-	<p>We offer customized power solutions to all your home, office or industry requirements. Please provide your contact details along with any specific information regarding your home or office construction. We will contact you with the best quote for an optimal power solution.
+	<h1>{{ power.title }}</h1>
+	<p>{{ power.description }}
 	</p>
 	<form id="post_form" method="post" action=""
 	<form>
 		{% csrf_token %}
 		{% for hidden in sol_form.hidden_fields %}
-        {{ hidden }}
-    	{% endfor %}
-		<div class="form-group">
-		<input type="hidden" name="csrfmiddlewaretoken" value="KDvpxl5Gd44lWAfPfbzxdM5gWW3icWSdQZMiCwcJt3SWTnSsqGXrLCno16Tt7j7k">
-		<input id="id_name" class="form-control" maxlength="156" name="name" type="text" required autofocus placeholder="Name" /> <br />
-    
-        <input id="id_email" class="form-control" maxlength="256" name="email" type="email" required placeholder="Email" /> <br />
-        <input id="id_address" class="form-control" maxlength="500" name="address" type="text" required placeholder="Address" /> <br />
-    
-        <input id="id_phone_number" class="form-control" maxlength="12" name="phone_number" type="text" required placeholder="Phone Number" /> <br />
-    
-        <textarea cols="40" id="id_message" class="form-control" maxlength="1256" name="message" rows="10" placeholder="Your Messsage"></textarea> <br />
+       		{{ hidden }}
+    	{% endfor %}	
+    	<div class="form-group">
+	{% render_field sol_form.name placeholder=sol_form.name.label class="form-control" %}
+       {% render_field sol_form.email placeholder=sol_form.email.label class="form-control" %}
+       {% render_field sol_form.phone_number placeholder=sol_form.phone_number.label class="form-control" %}
+       {% render_field sol_form.address placeholder=sol_form.address.label class="form-control" %}
+       {% render_field sol_form.message placeholder=sol_form.message.label class="form-control" %}
+        
+
         <h3>Enter your requirements, so we can provide you better.</h3>
         <div class="pow-sol-input">
 

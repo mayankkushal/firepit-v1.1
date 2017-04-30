@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import SlideShowImage, Banner, RequestQuote, RequestQuoteImage, DecorateSpaceImage, DecorateSpace
+from .models import SlideShowImage, Banner, RequestQuote, RequestQuoteImage, DecorateSpaceImage, DecorateSpace, HomeSolution
 from apps.catalogue.models import Product, Store
 from .forms import RequestQuoteForm, RequestQuoteImageForm, DecorateSpaceForm, DecorateSpaceImageForm, PowerSolutionForm
 from django.forms import BaseModelFormSet
@@ -15,6 +15,7 @@ Order = get_model('order', 'Order')
 CheckoutSessionData = get_class('checkout.utils', 'CheckoutSessionData')
 BasketMiddleware = get_class('basket.middleware', 'BasketMiddleware')
 Selector = get_class('partner.strategy', 'Selector')
+UserAddress = get_model('address', 'UserAddress')
 
 # Create your views here.
 
@@ -34,6 +35,7 @@ def store(request, store_slug):
 	return render(request, 'catalogue/store.html', context_dict)
 
 def request_quote(request):
+	quote = HomeSolution.objects.get(order_number=1)
 	ImageFormSet = modelformset_factory(RequestQuoteImage, form=RequestQuoteImageForm, extra=5)#extra can be increased for more no 
 	if request.method == 'POST':																# of images
 		quote_form = RequestQuoteForm(request.POST)
@@ -55,11 +57,19 @@ def request_quote(request):
 					photo.save()
 			return render(request, 'firepit/success.html', {'total':total})
 		else:
-			print(quote_form.errors, formste.errors)
+			print(quote_form.errors, formset.errors)
 	else:
-		quote_form = RequestQuoteForm()
+		if request.user.is_authenticated():
+			user = request.user
+			try:
+				data = {'name': user.first_name+" "+user.last_name, "email":user.email, 'phone_number':UserAddress.objects.get(user=user).phone_number.as_national}
+			except:
+				data = {'email':user.email}
+		else:
+			data = {}
+		quote_form = RequestQuoteForm(initial= data)
 		formset = ImageFormSet(queryset=RequestQuoteImage.objects.none())
-	return render(request, 'firepit/request_quote.html',{'quote_form':quote_form, 'formset':formset})
+	return render(request, 'firepit/request_quote.html',{'quote_form':quote_form, 'formset':formset, 'quote':quote})
 
 def thank_you(request):
 	
@@ -87,6 +97,7 @@ def thank_you(request):
 	return render(request, 'thank_you.html', {"order":order})
 
 def decorate_space(request):
+	space = HomeSolution.objects.get(order_number=2)
 	ImageFormSet = modelformset_factory(DecorateSpaceImage, form=DecorateSpaceImageForm, extra=5)#extra can be increased for more no 
 	if request.method == 'POST':																# of images
 		space_form = DecorateSpaceForm(request.POST)
@@ -110,20 +121,41 @@ def decorate_space(request):
 		else:
 			print(space_form.errors, formset.errors)
 	else:
-		space_form = DecorateSpaceForm()
+		if request.user.is_authenticated():
+			user = request.user
+			try:
+				address = UserAddress.objects.get(user=user)
+				data = {'name': user.first_name+" "+user.last_name, "email":user.email, 'address':address,
+				'phone_number':address.phone_number.as_national}
+			except:
+				data = {'email':user.email}
+		else:
+			data = {}
+		space_form = DecorateSpaceForm(initial=data)
 		formset = ImageFormSet(queryset=DecorateSpaceImage.objects.none())
-	return render(request, 'firepit/decorate_space.html',{'space_form':space_form, 'formset':formset})
+	return render(request, 'firepit/decorate_space.html',{'space_form':space_form, 'formset':formset, 'space':space})
 	
 def power_solution(request):
 	total = 0
+	power = HomeSolution.objects.get(order_number=3)
 	if request.method == "POST":
 		sol_form = PowerSolutionForm(request.POST)
 		if sol_form.is_valid():
 			sol = sol_form.save()
 			return render(request, 'firepit/success.html')
 	else:
-		sol_form = PowerSolutionForm()
-		return render(request, 'firepit/power_solution.html', {'sol_form':sol_form}) 
+		if request.user.is_authenticated():
+			user = request.user
+			try:
+				address = UserAddress.objects.get(user=user)
+				data = {'name': user.first_name+" "+user.last_name, "email":user.email, 'address':address,
+				'phone_number':address.phone_number.as_national}
+			except:
+				data = {'email':user.email}
+		else:
+			data = {}
+		sol_form = PowerSolutionForm(initial=data)
+		return render(request, 'firepit/power_solution.html', {'sol_form':sol_form, 'power':power}) 
 
 def site_map(request):
 	return render(request, 'firepit/site_map.html')

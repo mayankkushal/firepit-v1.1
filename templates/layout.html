@@ -4,6 +4,9 @@
 {% load category_tags %}
 {% load i18n %}
 
+
+{% block description %}Firepit - furniture and home solutions, Get everything at place for your home. Your search ends here.{% endblock %}
+
 {% block styles %}
     {% if use_less %}
         <link rel="stylesheet/less" type="text/css" href="{% static "oscar/less/styles.less" %}" />
@@ -12,6 +15,7 @@
     {% endif %}
     <link rel="stylesheet" href="{% static "oscar/js/bootstrap-datetimepicker/bootstrap-datetimepicker.css" %}" />
     <link rel="stylesheet" type="text/css" href="{% static "oscar/css/datetimepicker.css" %}" />
+
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet">
@@ -20,7 +24,7 @@
     <link href="https://fonts.googleapis.com/css?family=Dosis|Slabo+27px" rel="stylesheet">
 {% endblock %}
 
-{% block layout %}
+{% block layout %}c
     {# Top-horizontal bar with account, notifictions, dashboard links #}
     {# Site logo/title, mini-basket, browse dropdown and searchbox #}
         
@@ -48,13 +52,9 @@
             </div>
             <!--/.navbar-header -->
  
-            <div class="navbar-collapse collapse fixed-top" id="navigation">
+            <div class="navbar-collapse collapse " id="navigation">
                 
-                <ul class="nav navbar-nav navbar-left fixed-top">
-                    <li {% if request.path == "/request_quote" %} class="active"{% endif %}><a href="{% url 'request_quote' %}">Request a Quote</a>
-                    </li>
-                    <li {% if request.path == "/decorate_space" %} class="active"{% endif %}><a href="{% url 'decorate_space' %}">Decorate your Space</a></li>
-                    <li {% if request.path == "/power_solution" %} class="active"{% endif %}><a href="{% url 'power_solution' %}">Inverter Solutions</a></li>
+                <ul class="nav navbar-nav left">
                     {% if user.is_authenticated %}
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi {{request.user.first_name}}{% if num_unread_notifications > 0 %}<span class="badge ">{{ num_unread_notifications }}</span>{% endif %}
                     <i class="fa fa-caret-down"></i></a>

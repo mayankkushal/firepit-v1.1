@@ -5,6 +5,8 @@
 {% load product_tags %}
 {% load product_view_tags %}
 {% load store_view_tags %}
+{% load home_solution_tag %}
+{% load cloudinary %}
 
 {% block navigation %}
     {% include "partials/nav_primary.html" with expand_dropdown=1 %}
@@ -36,7 +38,7 @@ $(document).ready(function() {
         <div id="main-slider" class="owl-carousel owl-theme">
             {% for image in images %}
                 <div class="item">
-                    <a href="{{ image.url }}"><img src="https://res.cloudinary.com/firepit/image/upload/v1491913830/{{image.image.name}}" alt="{{ image.url }}" class="img-responsive"></a>
+                    <a href="{{ image.url }}">{% cloudinary image.image.name class="img-responsive" %}</a>
                 </div>
             {% endfor %}
         </div>
@@ -44,41 +46,25 @@ $(document).ready(function() {
     </div>
  </div>
  <div class="container">
-<h1>Categories</h1>
- {% category_tree depth=2 as tree_categories %}
- {% if tree_categories %}
+ <h1>Home Solutions - Get all solutions at one place</h1>
  <div class="row">
- {% for tree_category, info in tree_categories %}
-   <div class="col-sm-3">
-   <div class="view view-sixth">
-   	<a href="{{ tree_category.get_absolute_url }}"><img class="cat-img" src="https://res.cloudinary.com/firepit/image/upload/v1491913830/{{ tree_category.image.name}}"></a>
-    <div class="mask">
-   	<h2><a href="{{ tree_category.get_absolute_url }}" class="mask-h">{{ tree_category.name }}</a></h2>
-    <p>{{ tree_category.description }}</p>
-    <a href="{{ tree_category.get_absolute_url }}" class="btn btn-primary">View</a>
-    </div>
-    </div>
-    <h2 align="center"><a href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a></h2>
-   </div>          
-  {% endfor %}                        
-	{% endif %}
-  </div>
-  </div>
-  <div class="container">
-  <h1>Popular Products</h1>
+   <div class="col-xs-4 col-sm-6 sol-tile">
+      {% request_quote as quote %}
+        <a href="{% url 'request_quote' %}">{% cloudinary quote.tile_image.name class="sol-pic" %}</a>
+        <a href="{% url 'request_quote' %}"><h3>{{ quote.name }}</h3></a>
+   </div>
+   <div class="col-xs-4 col-sm-6 sol-tile">
+      {% decorate_space as space %}
+        <a href="{% url 'decorate_space' %}">{% cloudinary space.tile_image.name alt=space.name class="sol-pic" %}</a>
+        <a href="{% url 'decorate_space' %}"><h3>{{ space.name }}</h3></a>
+   </div>
+   <div class="col-xs-4 col-sm-6 sol-tile">
+      {% power_solution as power %}
+        <a href="{% url 'power_solution' %}">{% cloudinary power.tile_image.name alt=power.name class="sol-pic" %}</a>
+        <a href="{% url 'power_solution' %}"><h3>{{ power.name }}</h3></a>
+   </div>
+ </div>
 
- {% product_record as product_list %}
- <div class="row">
- {% for product in product_list %}
-   <div class="col-sm-3 col-xs-6">
-   {% with product.product.images.all|first as image %}
-    <a href="{{ product.product.get_absolute_url }}"><img class="cat-img" src="https://res.cloudinary.com/firepit/image/upload/v1491913830/{{ image.original.name }}"></a>
-    <h2><a href="{{ product.product.get_absolute_url }}">{{ product.product.title }}</a></h2>
-    {% endwith %}
-   </div>          
-  {% endfor %}
-  </div>
-    </div>
   <div class="container">
     <h1>Stores</h1>
     <div class="row">
@@ -86,7 +72,7 @@ $(document).ready(function() {
     {% for store in stores %}
     <div class="col-sm-3">
       <div class="view view-sixth">
-        <a href="{% url 'store' store.slug %}""><img src="https://res.cloudinary.com/firepit/image/upload/v1491913830/{{ store.image.name }}" alt="{{ store.name }}"></a>
+        <a href="{% url 'store' store.slug %}"">{% cloudinary store.image.name class="img-responsive" %}</a>
       <div class="mask">
       <h2><a href="{% url 'store' store.slug %}" class="mask-h">{{ store.name }}</a></h2>
       <p>{{ store.description }}</p>

@@ -42,6 +42,26 @@ class ReviewControl(models.Model):
 
 	post_save.connect(create_review_control, sender=User)
 
+class HomeSolution(models.Model):
+	order_number = models.PositiveIntegerField(default=0, null=False)
+	name = models.CharField(max_length=500)
+	title = models.TextField(max_length=1000, null=True)
+	description = models.TextField(max_length=4000, null=True)
+	tile_image = models.ImageField(upload_to='home_solutions/tile')
+	background_image = models.ImageField(upload_to='home_solutions/background', null=True, blank=True)
+
+	def __str__(self):
+		return self.name
+
+	def save(self, *args, **kwargs):
+		cloudinary.uploader.upload( self.tile_image, folder="home_solutions/tile", public_id=os.path.splitext(self.tile_image.name)[0])
+		try:
+			cloudinary.uploader.upload( self.background_image, folder="home_solutions/background", public_id=os.path.splitext(self.background_image.name)[0])
+		except:
+			pass
+		super(HomeSolution, self).save(*args, **kwargs)
+
+
 
 class RequestQuote(models.Model):
 	name = models.CharField(max_length=156)
@@ -147,4 +167,5 @@ class PowerSolutions(models.Model):
 			return 3
 		else:
 			return 4
+
 	

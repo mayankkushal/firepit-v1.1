@@ -90,7 +90,7 @@
                     {% for result in page.object_list %}
                     {% if result.object.name %} <!-- very ugly hack, checks if the object has name(only store has name) -->
                            <li class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                                <a href="{% url 'store' result.object.slug %}""><img src="http://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{ result.object.image.name }}" alt="{{ result.object.name }}"></a>
+                                <a href="{% url 'store' result.object.slug %}""><img src="https://res.cloudinary.com/firepit/image/upload/v1491913830/{{ result.object.image.name }}" alt="{{ result.object.name }}"></a>
                                 <a href="{% url 'store' result.object.slug %}"">{{ result.object.name }}</a>
                                 <p>{{ result.object.description }}</p>
                             </li>
