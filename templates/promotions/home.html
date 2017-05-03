@@ -48,22 +48,41 @@ $(document).ready(function() {
  <div class="container">
  <h1>Home Solutions - Get all solutions at one place</h1>
  <div class="row">
-   <div class="col-xs-4 col-sm-6 sol-tile">
+   <div class="col-sm-4">
       {% request_quote as quote %}
-        <a href="{% url 'request_quote' %}">{% cloudinary quote.tile_image.name class="sol-pic" %}</a>
-        <a href="{% url 'request_quote' %}"><h3>{{ quote.name }}</h3></a>
+      <div class="view view-sixth">
+        <a href="{% url 'request_quote' %}">{% cloudinary quote.tile_image.name %}</a>
+      <div class="mask">
+        <h2><a href="{% url 'request_quote' %}" class="mask-h">{{ quote.name }}</a></h2>
+        <p>{{ quote.title }}</p>
+        <a href="{% url 'request_quote' %}" class="btn btn-primary">View</a>
+      </div>
+      </div>
    </div>
-   <div class="col-xs-4 col-sm-6 sol-tile">
+   <div class="col-sm-4">
       {% decorate_space as space %}
-        <a href="{% url 'decorate_space' %}">{% cloudinary space.tile_image.name alt=space.name class="sol-pic" %}</a>
-        <a href="{% url 'decorate_space' %}"><h3>{{ space.name }}</h3></a>
+       <div class="view view-sixth">
+        <a href="{% url 'request_quote' %}">{% cloudinary space.tile_image.name %}</a>
+      <div class="mask">
+        <h2><a href="{% url 'decorate_space' %}" class="mask-h">{{ space.name }}</a></h2>
+        <p>{{ space.title }}</p>
+        <a href="{% url 'decorate_space' %}" class="btn btn-primary">View</a>
+      </div>
+      </div>
    </div>
-   <div class="col-xs-4 col-sm-6 sol-tile">
+   <div class="col-sm-4">
       {% power_solution as power %}
-        <a href="{% url 'power_solution' %}">{% cloudinary power.tile_image.name alt=power.name class="sol-pic" %}</a>
-        <a href="{% url 'power_solution' %}"><h3>{{ power.name }}</h3></a>
+        <div class="view view-sixth">
+        <a href="{% url 'request_quote' %}">{% cloudinary power.tile_image.name %}</a>
+      <div class="mask">
+        <h2><a href="{% url 'power_solution' %}" class="mask-h">{{ power.name }}</a></h2>
+        <p>{{ power.title }}</p>
+        <a href="{% url 'power_solution' %}" class="btn btn-primary">View</a>
+      </div>
+      </div>
    </div>
  </div>
+</div>
 
   <div class="container">
     <h1>Stores</h1>
