@@ -1,10 +1,6 @@
 {% extends 'layout.html' %}
 {% load widget_tweaks %}
 
-{% block extrastyles %}
-    
-{% endblock %}
-
 {% block content_wrapper %}
 <div style="background-image: url(https://res.cloudinary.com/dvqjn4lzj/image/upload/v1487920162/{{quote.background_image.name}});" class="solution-background">
 <div class="container quote-form">
@@ -12,12 +8,12 @@
 <p>{{ quote.description }}</p>
 <form id="post_form" method="post" action=""
       enctype="multipart/form-data">
-      <div class="form-group">
+      
     {% csrf_token %}
     {% for hidden in quote_form.hidden_fields %}
         {{ hidden }}
     {% endfor %}
-
+    <div class="form-group">
        {% render_field quote_form.name placeholder=quote_form.name.label class="form-control" %}
        {% render_field quote_form.email placeholder=quote_form.email.label class="form-control" %}
        {% render_field quote_form.phone_number placeholder=quote_form.phone_number.label class="form-control" %}

@@ -46,39 +46,30 @@ $(document).ready(function() {
     </div>
  </div>
  <div class="container">
- <h1>Home Solutions - Get all solutions at one place</h1>
+ <h1 align="center">Home Solutions - Get all solutions at one place</h1>
  <div class="row">
    <div class="col-sm-4">
       {% request_quote as quote %}
-      <div class="view view-sixth">
+      <div class="sol-tile">
         <a href="{% url 'request_quote' %}">{% cloudinary quote.tile_image.name %}</a>
-      <div class="mask">
-        <h2><a href="{% url 'request_quote' %}" class="mask-h">{{ quote.name }}</a></h2>
+        <h2><a href="{% url 'request_quote' %}">{{ quote.name }}</a></h2>
         <p>{{ quote.title }}</p>
-        <a href="{% url 'request_quote' %}" class="btn btn-primary">View</a>
-      </div>
       </div>
    </div>
    <div class="col-sm-4">
       {% decorate_space as space %}
-       <div class="view view-sixth">
-        <a href="{% url 'request_quote' %}">{% cloudinary space.tile_image.name %}</a>
-      <div class="mask">
-        <h2><a href="{% url 'decorate_space' %}" class="mask-h">{{ space.name }}</a></h2>
+       <div class="sol-tile">
+        <a href="{% url 'decorate_space' %}">{% cloudinary space.tile_image.name %}</a>
+        <h2><a href="{% url 'decorate_space' %}">{{ space.name }}</a></h2>
         <p>{{ space.title }}</p>
-        <a href="{% url 'decorate_space' %}" class="btn btn-primary">View</a>
-      </div>
       </div>
    </div>
    <div class="col-sm-4">
       {% power_solution as power %}
-        <div class="view view-sixth">
-        <a href="{% url 'request_quote' %}">{% cloudinary power.tile_image.name %}</a>
-      <div class="mask">
-        <h2><a href="{% url 'power_solution' %}" class="mask-h">{{ power.name }}</a></h2>
+        <div class="sol-tile">
+        <a href="{% url 'power_solution' %}">{% cloudinary power.tile_image.name %}</a>
+        <h2><a href="{% url 'power_solution' %}">{{ power.name }}</a></h2>
         <p>{{ power.title }}</p>
-        <a href="{% url 'power_solution' %}" class="btn btn-primary">View</a>
-      </div>
       </div>
    </div>
  </div>
