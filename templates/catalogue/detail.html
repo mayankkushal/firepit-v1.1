@@ -147,7 +147,7 @@
     </table>
     </div>
     {% endblock %}
-
+{% if request.user.is_authenticated %}
     {% iffeature "reviews" %}
         {% block product_review %}
         <section>
@@ -203,7 +203,10 @@
     {% endwith %}
 
     {% recently_viewed_products current_product=product %}
+{% else %}
 
+<h2>Login<a href="{% url 'customer:login' %}">Login/Register</a> to see what others think about this porduct</h2>
+{% endif %}
 </article><!-- End of product page -->
 {% endblock content %}
 
