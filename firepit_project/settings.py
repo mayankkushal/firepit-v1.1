@@ -270,9 +270,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # admin settings
 
-AdminSite.site_header = 'FIREPIT administration'
-AdminSite.site_title = 'FIREPIT Site Admin'
-AdminSite.index_title = 'FIREPIT Administration'
+AdminSite.site_header = 'andTheStyle administration'
+AdminSite.site_title = 'andTheStyle Site Admin'
+AdminSite.index_title = 'andTheStyle Administration'
 
 
 
@@ -286,7 +286,7 @@ DATABASES = { 'default': dj_database_url.config() }
 
 ALLOWED_HOSTS = ['*']
 
-DEBUG = False
+DEBUG = True
 
 try:
     from .local_settings import *
