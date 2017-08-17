@@ -51,9 +51,9 @@ $(document).ready(function() {
 {% for category in category_list %}
    <div class="col-sm-4">   
       <div class="sol-tile">
-        <a href="{{ category.get_absolute_url }}"><img src="{{ category.image.url }}"></a>
+        <a href="{{ category.get_absolute_url }}">{% cloudinary category.image.name class="img-responsive" %}</a>
         <h2><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></h2>
-        <p>{{ category.description }}</p>
+        <p>{{ category.description|safe }}</p>
       </div>
    </div>
    {% endfor %}
@@ -67,7 +67,7 @@ $(document).ready(function() {
     {% for store in stores %}
     <div class="col-sm-3">
       <div class="view view-sixth">
-        <a href="{% url 'store' store.slug %}"">{% cloudinary store.image.name class="img-responsive" %}</a>
+        <a href="{% url 'store' store.slug %}">{% cloudinary store.image.name class="img-responsive" %}</a>
       <div class="mask">
       <h2><a href="{% url 'store' store.slug %}" class="mask-h">{{ store.name }}</a></h2>
       <p>{{ store.description }}</p>
