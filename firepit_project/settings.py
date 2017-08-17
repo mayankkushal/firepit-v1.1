@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'newsletter',
 ] + get_core_apps( ['apps.catalogue','apps.basket', 'apps.address', 'apps.dashboard', 'apps.dashboard.catalogue', 
-                    'apps.checkout', 'apps.search'])
+                    'apps.checkout', 'apps.search', 'apps.promotions'])
 
 
 SITE_ID = 1
@@ -213,13 +213,13 @@ OSCAR_ORDER_STATUS_PIPELINE = {
 }
 
 OSCAR_CURRENCY_LOCALE = 'en_US'
-OSCAR_DEFAULT_CURRENCY = u'INR' 
-OSCAR_CURRENCY_FORMAT = u'₹ #,##0' 
+OSCAR_DEFAULT_CURRENCY = u'USD' 
+OSCAR_CURRENCY_FORMAT = u'$ #,##0' 
 
 OSCAR_SEND_REGISTRATION_EMAIL = False
 
-OSCAR_SHOP_NAME = 'FIREPIT'
-OSCAR_SHOP_TAGLINE = 'You Think, We Provide'
+OSCAR_SHOP_NAME = 'AndTheStyle '
+OSCAR_SHOP_TAGLINE = 'Fashion Home'
 
 # allow anonymous
 OSCAR_ALLOW_ANON_REVIEWS = False

@@ -8,7 +8,6 @@ from oscar.apps.order.models import Order
 from oscar.core.loading import get_class, get_classes, get_model
 from django.template import RequestContext, Context
 
-
 OrderPlacementMixin = get_class('checkout.mixins', 'OrderPlacementMixin')
 Basket = get_model('basket', 'basket')
 Order = get_model('order', 'Order')
@@ -16,13 +15,16 @@ CheckoutSessionData = get_class('checkout.utils', 'CheckoutSessionData')
 BasketMiddleware = get_class('basket.middleware', 'BasketMiddleware')
 Selector = get_class('partner.strategy', 'Selector')
 UserAddress = get_model('address', 'UserAddress')
+Category = get_model('catalogue', 'Category')
+HomeView = get_class('promotions.views', "HomeView")
 
 # Create your views here.
-
-def index(request):
-	image_list = SlideShowImage.objects.filter(slideshow=Banner.objects.get(name='slideshow'))
-	category_list = Category.objects.all()
-	return render(request, 'firepit/index.html', {'category_list':category_list, 'image_list':image_list} )
+class Index(HomeView):
+	def get_context_data(self, **kwargs):
+		context = super(Index, self).get_context_data(**kwargs)
+		category_list = Category.objects.all()
+		context['category_list'] = category_list
+		return context
 
 
 def store(request, store_slug):
@@ -40,7 +42,7 @@ def request_quote(request):
 	if request.method == 'POST':																# of images
 		quote_form = RequestQuoteForm(request.POST)
 		formset = ImageFormSet(request.POST, request.FILES,
-                               queryset=RequestQuoteImage.objects.none())
+							   queryset=RequestQuoteImage.objects.none())
 		if quote_form.is_valid() and formset.is_valid():
 			quote = quote_form.save(commit=False)
 			if request.user.is_authenticated():
@@ -88,12 +90,12 @@ def thank_you(request):
 	print(basket.strategy)
 	try:
 		OrderPlacementMixin().place_order(order_number=order_number, user=user, basket=basket, shipping_address=shipping_address,
-                    shipping_method=shipping_method, shipping_charge=shipping_charge, order_total=order_total,
-                    )  
+					shipping_method=shipping_method, shipping_charge=shipping_charge, order_total=order_total,
+					)  
 	except ValueError:
 		pass
 	order = Order.objects.get(number=order_number)
-	              
+				  
 	return render(request, 'thank_you.html', {"order":order})
 
 def decorate_space(request):
@@ -102,7 +104,7 @@ def decorate_space(request):
 	if request.method == 'POST':																# of images
 		space_form = DecorateSpaceForm(request.POST)
 		formset = ImageFormSet(request.POST, request.FILES,
-                               queryset=DecorateSpaceImage.objects.none())
+							   queryset=DecorateSpaceImage.objects.none())
 		if space_form.is_valid() and formset.is_valid():
 			space = space_form.save(commit=False)
 			if request.user.is_authenticated():

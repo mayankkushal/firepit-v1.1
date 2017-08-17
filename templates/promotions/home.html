@@ -46,32 +46,17 @@ $(document).ready(function() {
     </div>
  </div>
  <div class="container">
- <h1 align="center">Home Solutions - Get all solutions at one place</h1>
+ <h1 align="center">Categories</h1>
  <div class="row">
-   <div class="col-sm-4">
-      {% request_quote as quote %}
+{% for category in category_list %}
+   <div class="col-sm-4">   
       <div class="sol-tile">
-        <a href="{% url 'request_quote' %}">{% cloudinary quote.tile_image.name %}</a>
-        <h2><a href="{% url 'request_quote' %}">{{ quote.name }}</a></h2>
-        <p>{{ quote.title }}</p>
+        <a href="{{ category.get_absolute_url }}"><img src="{{ category.image.url }}"></a>
+        <h2><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></h2>
+        <p>{{ category.description }}</p>
       </div>
    </div>
-   <div class="col-sm-4">
-      {% decorate_space as space %}
-       <div class="sol-tile">
-        <a href="{% url 'decorate_space' %}">{% cloudinary space.tile_image.name %}</a>
-        <h2><a href="{% url 'decorate_space' %}">{{ space.name }}</a></h2>
-        <p>{{ space.title }}</p>
-      </div>
-   </div>
-   <div class="col-sm-4">
-      {% power_solution as power %}
-        <div class="sol-tile">
-        <a href="{% url 'power_solution' %}">{% cloudinary power.tile_image.name %}</a>
-        <h2><a href="{% url 'power_solution' %}">{{ power.name }}</a></h2>
-        <p>{{ power.title }}</p>
-      </div>
-   </div>
+   {% endfor %}
  </div>
 </div>
 
