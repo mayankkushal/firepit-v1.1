@@ -53,7 +53,6 @@ $(document).ready(function() {
       <div class="sol-tile">
         <a href="{{ category.get_absolute_url }}">{% cloudinary category.image.name class="img-responsive" %}</a>
         <h2><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></h2>
-        <p>{{ category.description|safe }}</p>
       </div>
    </div>
    {% if forloop.counter == 3%}
