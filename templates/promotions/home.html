@@ -56,7 +56,7 @@ $(document).ready(function() {
         <p>{{ category.description|safe }}</p>
       </div>
    </div>
-   {% if forloop.count == 3%}
+   {% if forloop.counter == 3%}
     </div>
     <row>
     {% endif %}
